@@ -5072,11 +5072,6 @@ vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vector@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/vector/-/vector-0.0.4.tgz#4ccb9a0b75f625020ae15a8465a9636764ad3652"
-  integrity sha512-tq0nE9uYgHX/ZEWxstUerXa9C5hvJuIddQGtpXiMtHoxP13uDUIFtc6b5Sc1OpvkVTGM18x28QreBm7Zi8CJoQ==
-
 vinyl-file@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/vinyl-file/-/vinyl-file-3.0.0.tgz#b104d9e4409ffa325faadd520642d0a3b488b365"

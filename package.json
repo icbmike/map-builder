@@ -19,7 +19,6 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
-    "vector": "^0.0.4"
   },
   "description": "My webpack project",
   "scripts": {
