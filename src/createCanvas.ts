@@ -16,5 +16,12 @@ export const createCanvas = () => {
 
     ctx.scale(dpr, dpr);
 
+    window.addEventListener('resize', () => {
+        cvs.width = cvs.getBoundingClientRect().width * dpr;
+        cvs.height = cvs.getBoundingClientRect().height * dpr;
+        ctx.scale(dpr, dpr);
+
+    })
+
     return { cvs, ctx };
 }
