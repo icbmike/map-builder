@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "module": "es6",
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
     "target": "es5",
     "allowJs": true,
     "strict": true
