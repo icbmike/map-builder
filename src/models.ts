@@ -24,3 +24,8 @@ export interface Circle extends BaseSprite {
 }
 
 export type Sprite = Circle | Rectangle;
+
+export interface Options {
+    showGrid: boolean;
+    tileSize: number;
+}

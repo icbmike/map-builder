@@ -1,10 +1,12 @@
 import { draw } from "./draw";
 import { createCanvas } from "./createCanvas";
+import { createOptionsControl } from "./createOptionsControl";
 import { sprites } from "./data";
 import { findShapeByPosition } from "./queries";
 import { vec2 } from "gl-matrix";
 
 const { ctx, cvs } = createCanvas();
+const options = createOptionsControl();
 
 sprites.sort((a, b) => b.position.z - a.position.z);
 
@@ -12,16 +14,16 @@ sprites.sort((a, b) => b.position.z - a.position.z);
 cvs.addEventListener("mousedown", (mouseDownEvent) => {
   const clickedSprite = findShapeByPosition(sprites, mouseDownEvent.clientX, mouseDownEvent.clientY);
 
-  if(clickedSprite) {
+  if (clickedSprite) {
     const startingPositionVector: vec2 = [clickedSprite.position.x, clickedSprite.position.y];
     const mouseDownVector: vec2 = [mouseDownEvent.clientX, mouseDownEvent.clientY];
 
-    const outVec: vec2 = [0,0];
+    const outVec: vec2 = [0, 0];
     vec2.subtract(outVec, startingPositionVector, mouseDownVector);
 
     const mouseMoveHandler = (mouseMoveEvent: MouseEvent) => {
       clickedSprite.position.x = mouseMoveEvent.clientX + outVec[0];
-      clickedSprite.position.y = mouseMoveEvent.clientY + outVec[1];      
+      clickedSprite.position.y = mouseMoveEvent.clientY + outVec[1];
     };
 
     const mouseUpHandler = () => {
@@ -34,15 +36,11 @@ cvs.addEventListener("mousedown", (mouseDownEvent) => {
   }
 });
 
-
 // Define and start render loop
 const render = () => {
   requestAnimationFrame(() => {
     ctx.clearRect(0, 0, cvs.width, cvs.height);
-
-    for(let i = sprites.length - 1; i >= 0; i--){
-      draw(ctx, sprites[i]);
-    }
+    draw(ctx, sprites, options);
     render();
   });
 };
