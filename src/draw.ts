@@ -1,4 +1,5 @@
-import { Circle, Options, Rectangle, Sprite } from "./models";
+import { Circle, Options, Rectangle, Sprite, Texture } from "./models";
+import { assets } from "./assets";
 
 type Ctx = CanvasRenderingContext2D;
 
@@ -36,6 +37,9 @@ export const drawSprite = (ctx: Ctx, sprite: Sprite, options: Options) => {
         case 'circle':
             drawCircle(ctx, sprite);
             break;
+        case 'texture':
+            drawTexture(ctx, sprite);
+            break;
     }
 }
 
@@ -54,4 +58,13 @@ const drawCircle = (ctx: Ctx, circle: Circle) => {
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, Math.PI * 2);
     ctx.fill();
+}
+
+const drawTexture = (ctx: Ctx, texture: Texture) => {
+    const { assetName, width, height, position: { x, y } } = texture;
+
+    const img = assets[assetName]
+    if (img) {
+        ctx.drawImage(img, x, y, width, height);
+    }
 }

@@ -18,6 +18,7 @@ const config = {
     devServer: {
         open: true,
         host: 'localhost',
+        static: ['assets']
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -36,7 +37,7 @@ const config = {
             },
             {
                 test: /\.css$/i,
-                use: [stylesHandler,'css-loader'],
+                use: [stylesHandler, 'css-loader'],
             },
             {
                 test: /\.s[ac]ss$/i,
@@ -59,8 +60,8 @@ const config = {
 module.exports = () => {
     if (isProduction) {
         config.mode = 'production';
-        
-        
+
+
     } else {
         config.mode = 'development';
     }

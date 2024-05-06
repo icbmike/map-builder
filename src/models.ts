@@ -13,7 +13,6 @@ export interface Rectangle extends BaseSprite {
     type: 'rect'
     width: number;
     height: number;
-    texture?: string;
     colour: string;
 }
 
@@ -23,7 +22,14 @@ export interface Circle extends BaseSprite {
     radius: number
 }
 
-export type Sprite = Circle | Rectangle;
+export interface Texture extends BaseSprite {
+    type: 'texture';
+    assetName: string;
+    width: number;
+    height: number;
+}
+
+export type Sprite = Circle | Rectangle | Texture;
 
 export interface Options {
     showGrid: boolean;

@@ -11,7 +11,6 @@ export const sprites: Sprite[] = [
     height: 200,
     width: 100,
     colour: "red",
-    texture: "asdasd",
   },
   {
     type: "circle",
@@ -33,7 +32,7 @@ export const sprites: Sprite[] = [
       z: 10,
     },
   },
-  
+
   {
     type: "circle",
     radius: 50,
@@ -44,4 +43,15 @@ export const sprites: Sprite[] = [
       z: 10,
     },
   },
+  {
+    type: "texture",
+    assetName: "tree",
+    height: 100,
+    width: 100,
+    position: {
+      x: 400,
+      y: 100,
+      z: 30
+    }
+  }
 ];

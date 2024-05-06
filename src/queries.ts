@@ -2,7 +2,7 @@ import { Sprite } from "./models";
 
 export const findShapeByPosition = (sprites: Sprite[], cX: number, cY: number) =>
   sprites.find((s) => {
-    if (s.type === "rect") {
+    if (s.type === "rect" || s.type === "texture") {
       const {
         position: { x, y },
         width,

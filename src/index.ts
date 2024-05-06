@@ -4,6 +4,7 @@ import { createOptionsControl } from "./createOptionsControl";
 import { sprites } from "./data";
 import { findShapeByPosition } from "./queries";
 import { vec2 } from "gl-matrix";
+import { loadAllAssets } from "./assets";
 
 const { ctx, cvs } = createCanvas();
 const options = createOptionsControl();
@@ -45,4 +46,6 @@ const render = () => {
   });
 };
 
-render();
+loadAllAssets().then(() => {
+  render();
+});
