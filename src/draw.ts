@@ -61,10 +61,16 @@ const drawCircle = (ctx: Ctx, circle: Circle) => {
 }
 
 const drawTexture = (ctx: Ctx, texture: Texture) => {
-    const { assetName, width, height, position: { x, y } } = texture;
+    const { assetName, width, height, position: { x, y }, repeat } = texture;
 
     const img = assets[assetName]
     if (img) {
-        ctx.drawImage(img, x, y, width, height);
+
+        if(repeat){
+            ctx.fillStyle = ctx.createPattern(img, 'repeat')!;
+            ctx.fillRect(x, y, repeat.timesX * width, repeat.timesY * height);
+        } else {
+            ctx.drawImage(img, x, y, width, height);
+        }
     }
 }

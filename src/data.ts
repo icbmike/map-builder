@@ -1,57 +1,45 @@
-import { Sprite } from "./models";
+import { Sprite, Texture } from "./models";
+
+const range = (numElements: number, start = 0) => Array(numElements).fill(1).map((x, y) => x + y + start);
+
+const trees = range(5).map((i): Texture => ({
+  type: "texture",
+  assetName: "tree",
+  width: 150,
+  height: 200,
+  position: {
+    x: 400 + i * 50,
+    y: 100,
+    z: 10
+  }
+}));
 
 export const sprites: Sprite[] = [
-  {
-    type: "rect",
-    position: {
-      x: 100,
-      y: 100,
-      z: 20,
-    },
-    height: 200,
-    width: 100,
-    colour: "red",
-  },
-  {
-    type: "circle",
-    radius: 50,
-    colour: "green",
-    position: {
-      x: 200,
-      y: 200,
-      z: 10,
-    },
-  },
-  {
-    type: "circle",
-    radius: 50,
-    colour: "purple",
-    position: {
-      x: 1000,
-      y: 200,
-      z: 10,
-    },
-  },
-
-  {
-    type: "circle",
-    radius: 50,
-    colour: "yellow",
-    position: {
-      x: 200,
-      y: 800,
-      z: 10,
-    },
-  },
+  ...trees,
   {
     type: "texture",
-    assetName: "tree",
+    assetName: "freddie",
     height: 100,
     width: 100,
     position: {
       x: 400,
       y: 100,
-      z: 30
+      z: 20
+    }
+  },
+  {
+    type: "texture",
+    assetName: "grass_tile",
+    height: 32,
+    width: 32,
+    position: {
+      x: 0,
+      y: 0,
+      z: 0
+    },
+    repeat: {
+      timesX: 50,
+      timesY: 200
     }
   }
 ];

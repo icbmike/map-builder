@@ -17,5 +17,18 @@ const loadImage = (src: string) => {
 export const assets: Record<string, HTMLImageElement | undefined> = {};
 
 export const loadAllAssets = async () => {
-  assets['tree'] = await loadImage('./tree.jpg')
+
+  const assetList: [string, string][] = [
+    ['tree', './tree.png'],
+    ['freddie', './freddie.png'],
+    ['grass_tile', './grass_tile.png']
+  ];
+  
+  const loadedAssets = await Promise.all(
+    assetList.map(([assetName, assetUrl]): Promise<[string, HTMLImageElement]> => loadImage(assetUrl).then(i => [assetName, i]))
+  );
+
+  loadedAssets.forEach(([assetName, image]) => {
+    assets[assetName] = image
+  });
 }
