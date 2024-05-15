@@ -36,6 +36,15 @@ export const loadAllAssets = async () => {
     ['water_tile', './water_tile.png'],
     ['water_inverse_corners', './water_inverse_corners.png'],
     ['water_corners', './water_corners.png'],
+    ['water_vertical_sides', './water_vertical_sides.png'],
+    ['water_horizontal_sides', './water_horizontal_sides.png'],
+
+    ['path_horizontal_sides', './path_horizontal_sides.png'],
+    ['path_vertical_sides', './path_vertical_sides.png'],
+    ['path_tile', './path_tile.png'],
+    ['path_corners', './path_corners.png'],
+    ['path_inverse_corners', './path_inverse_corners.png'],
+
   ];
   
   const loadedAssets = await Promise.all(

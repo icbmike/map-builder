@@ -2,6 +2,95 @@
     "data": [
       {
         "type": "texture",
+        "assetName": "blue_flowers",
+        "width": 50,
+        "height": 40,
+        "position": {
+          "x": 739,
+          "y": 1096,
+          "z": 195
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "round_tree_dark_green",
+        "width": 120,
+        "height": 120,
+        "position": {
+          "x": 934,
+          "y": 359,
+          "z": 194
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "round_tree",
+        "width": 120,
+        "height": 120,
+        "position": {
+          "x": 1091,
+          "y": 476,
+          "z": 193
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "yellow_flowers",
+        "width": 50,
+        "height": 40,
+        "position": {
+          "x": 914,
+          "y": 492,
+          "z": 192
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "blue_flowers",
+        "width": 50,
+        "height": 40,
+        "position": {
+          "x": 1070,
+          "y": 661,
+          "z": 191
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "water_corners",
+        "width": 64,
+        "height": 64,
+        "sourceRect": {
+          "x": 16,
+          "y": 16,
+          "width": 16,
+          "height": 16
+        },
+        "position": {
+          "x": 1100,
+          "y": 638,
+          "z": 190
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "water_vertical_sides",
+        "width": 64,
+        "height": 128,
+        "sourceRect": {
+          "x": 16,
+          "y": 0,
+          "width": 16,
+          "height": 32
+        },
+        "position": {
+          "x": 1099,
+          "y": 522,
+          "z": 189
+        }
+      },
+      {
+        "type": "texture",
         "assetName": "rose",
         "width": 26,
         "height": 28,
@@ -19,6 +108,17 @@
         "position": {
           "x": 421,
           "y": 736,
+          "z": 187
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "rose",
+        "width": 26,
+        "height": 28,
+        "position": {
+          "x": 712,
+          "y": 1038,
           "z": 187
         }
       },
@@ -184,6 +284,17 @@
         "position": {
           "x": 819,
           "y": 491,
+          "z": 173
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "pink_flowers",
+        "width": 50,
+        "height": 50,
+        "position": {
+          "x": 957,
+          "y": 646,
           "z": 173
         }
       },
@@ -556,8 +667,41 @@
         "width": 50,
         "height": 40,
         "position": {
-          "x": 329,
-          "y": 837,
+          "x": 974,
+          "y": 1098,
+          "z": 138
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "white_flowers",
+        "width": 50,
+        "height": 40,
+        "position": {
+          "x": 960,
+          "y": 1126,
+          "z": 138
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "white_flowers",
+        "width": 50,
+        "height": 40,
+        "position": {
+          "x": 339,
+          "y": 847,
+          "z": 138
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "white_flowers",
+        "width": 50,
+        "height": 40,
+        "position": {
+          "x": 939,
+          "y": 1092,
           "z": 137
         }
       },
@@ -589,8 +733,30 @@
         "width": 50,
         "height": 40,
         "position": {
+          "x": 305,
+          "y": 832,
+          "z": 136
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "white_flowers",
+        "width": 50,
+        "height": 40,
+        "position": {
           "x": 295,
           "y": 822,
+          "z": 135
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "white_flowers",
+        "width": 50,
+        "height": 40,
+        "position": {
+          "x": 734,
+          "y": 1044,
           "z": 135
         }
       },
@@ -655,8 +821,8 @@
         "width": 50,
         "height": 40,
         "position": {
-          "x": 346,
-          "y": 783,
+          "x": 1058,
+          "y": 456,
           "z": 131
         }
       },
@@ -765,6 +931,17 @@
         "width": 50,
         "height": 50,
         "position": {
+          "x": 372,
+          "y": 1170,
+          "z": 121
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "pink_flowers",
+        "width": 50,
+        "height": 50,
+        "position": {
           "x": 363,
           "y": 594,
           "z": 120
@@ -789,6 +966,17 @@
         "position": {
           "x": 325,
           "y": 585,
+          "z": 119
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "pink_flowers",
+        "width": 50,
+        "height": 50,
+        "position": {
+          "x": 402,
+          "y": 1184,
           "z": 119
         }
       },
@@ -1752,6 +1940,17 @@
       },
       {
         "type": "texture",
+        "assetName": "water_tile",
+        "width": 64,
+        "height": 64,
+        "position": {
+          "x": 1039,
+          "y": 576,
+          "z": 33
+        }
+      },
+      {
+        "type": "texture",
         "assetName": "long_grass_patch",
         "width": 27,
         "height": 30,
@@ -1780,6 +1979,17 @@
         "position": {
           "x": 482,
           "y": 381,
+          "z": 32
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "water_tile",
+        "width": 64,
+        "height": 64,
+        "position": {
+          "x": 975,
+          "y": 575,
           "z": 32
         }
       },
@@ -1862,6 +2072,17 @@
       },
       {
         "type": "texture",
+        "assetName": "water_tile",
+        "width": 64,
+        "height": 64,
+        "position": {
+          "x": 1035,
+          "y": 512,
+          "z": 31
+        }
+      },
+      {
+        "type": "texture",
         "assetName": "long_grass_patch",
         "width": 27,
         "height": 30,
@@ -1917,6 +2138,145 @@
       },
       {
         "type": "texture",
+        "assetName": "water_corners",
+        "width": 64,
+        "height": 64,
+        "sourceRect": {
+          "x": 0,
+          "y": 0,
+          "width": 16,
+          "height": 16
+        },
+        "position": {
+          "x": 920,
+          "y": 452,
+          "z": 30
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "water_corners",
+        "width": 64,
+        "height": 64,
+        "sourceRect": {
+          "x": 16,
+          "y": 0,
+          "width": 16,
+          "height": 16
+        },
+        "position": {
+          "x": 1094,
+          "y": 459,
+          "z": 30
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "water_corners",
+        "width": 64,
+        "height": 64,
+        "sourceRect": {
+          "x": 0,
+          "y": 16,
+          "width": 16,
+          "height": 16
+        },
+        "position": {
+          "x": 919,
+          "y": 636,
+          "z": 30
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "water_vertical_sides",
+        "width": 64,
+        "height": 128,
+        "sourceRect": {
+          "x": 0,
+          "y": 0,
+          "width": 16,
+          "height": 32
+        },
+        "position": {
+          "x": 918,
+          "y": 516,
+          "z": 30
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "water_horizontal_sides",
+        "width": 128,
+        "height": 64,
+        "sourceRect": {
+          "x": 0,
+          "y": 0,
+          "width": 32,
+          "height": 16
+        },
+        "position": {
+          "x": 974,
+          "y": 450,
+          "z": 30
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "water_horizontal_sides",
+        "width": 128,
+        "height": 64,
+        "sourceRect": {
+          "x": 0,
+          "y": 16,
+          "width": 32,
+          "height": 16
+        },
+        "position": {
+          "x": 980,
+          "y": 639,
+          "z": 30
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "water_tile",
+        "width": 64,
+        "height": 64,
+        "position": {
+          "x": 971,
+          "y": 512,
+          "z": 30
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "path_vertical_sides",
+        "width": 32,
+        "height": 32,
+        "position": {
+          "x": 375,
+          "y": 288,
+          "z": 30
+        }
+      },
+      {
+        "type": "texture",
+        "assetName": "path_horizontal_sides",
+        "width": 32,
+        "height": 32,
+        "repeat": {
+          "timesY": 1,
+          "timesX": 20
+        },
+        "position": {
+          "x": -4,
+          "y": 511,
+          "z": 30
+        }
+      },
+      {
+        "type": "texture",
         "assetName": "tree",
         "width": 150,
         "height": 200,
@@ -1965,8 +2325,8 @@
         "width": 150,
         "height": 200,
         "position": {
-          "x": 1074,
-          "y": 462,
+          "x": 959,
+          "y": 789,
           "z": 13
         }
       },

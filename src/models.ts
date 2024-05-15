@@ -30,7 +30,13 @@ export interface Texture extends BaseSprite {
     repeat?: {
         timesX: number;
         timesY: number
-    }
+    },
+    sourceRect?: {
+        x: number,
+        y: number,
+        width: number,
+        height: number
+    } 
 }
 
 export type Sprite = Circle | Rectangle | Texture;
