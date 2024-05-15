@@ -43,6 +43,13 @@ const handleBringToFront = (clickedSprite: Sprite) => {
   sprites.sort((a, b) => b.position.z - a.position.z);
 };
 
+const handleRemove = (clickedSprite: Sprite) => {
+
+  const index = sprites.indexOf(clickedSprite);
+
+  sprites.splice(index, 1);
+}
+
 export const setupInputs = (cvs: HTMLCanvasElement) => {
   cvs.addEventListener("mousedown", (mouseDownEvent) => {
     const clickedSprite = findShapeByPosition(
@@ -54,6 +61,8 @@ export const setupInputs = (cvs: HTMLCanvasElement) => {
     if (clickedSprite) {
       if (mouseDownEvent.ctrlKey) {
         handleDuplicate(clickedSprite);
+      } else if(mouseDownEvent.altKey){
+        handleRemove(clickedSprite);
       } else {
         handleMove(cvs, clickedSprite, mouseDownEvent);
       }
