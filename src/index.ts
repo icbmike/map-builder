@@ -12,8 +12,6 @@ sprites.sort((a, b) => b.position.z - a.position.z);
 
 setupInputs(cvs);
 
-const dataOutput = document.getElementById('data_output')!;
-
 document.getElementById('export_button')?.addEventListener('click', () => {
   navigator.clipboard.writeText(JSON.stringify({data: sprites}, undefined, '  '))
 })
@@ -24,7 +22,6 @@ const render = () => {
     ctx.clearRect(0, 0, cvs.width, cvs.height);
     draw(ctx, sprites, options);
     
-    dataOutput.innerText = JSON.stringify(sprites, undefined, '  ');
     render();
   });
 };
