@@ -5,10 +5,14 @@
     background-color: slategray;
 }
 
-.canvasContainer {
+.toolbarAndCanvas {
     flex: 1 0 0;
     min-height: 0;
-    margin: 0 auto;
+    display: flex;
+}
+
+.canvasContainer {
     padding: 20px;
     position: relative;
+    margin: 0 auto;
 }

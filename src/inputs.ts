@@ -5,14 +5,14 @@ import { Sprite } from "./models";
 
 const handleMove = (cvs: HTMLCanvasElement, clickedSprite: Sprite, mouseDownEvent: MouseEvent) => {
   const startingPositionVector: vec2 = [clickedSprite.position.x, clickedSprite.position.y];
-  const mouseDownVector: vec2 = [mouseDownEvent.clientX, mouseDownEvent.clientY];
+  const mouseDownVector: vec2 = [mouseDownEvent.offsetX, mouseDownEvent.offsetY];
 
   const outVec: vec2 = [0, 0];
   vec2.subtract(outVec, startingPositionVector, mouseDownVector);
 
   const mouseMoveHandler = (mouseMoveEvent: MouseEvent) => {
-    clickedSprite.position.x = mouseMoveEvent.clientX + outVec[0];
-    clickedSprite.position.y = mouseMoveEvent.clientY + outVec[1];
+    clickedSprite.position.x = mouseMoveEvent.offsetX + outVec[0];
+    clickedSprite.position.y = mouseMoveEvent.offsetY + outVec[1];
   };
 
   const mouseUpHandler = () => {
@@ -54,9 +54,10 @@ export const setupInputs = (cvs: HTMLCanvasElement) => {
   cvs.addEventListener("mousedown", (mouseDownEvent) => {
     const clickedSprite = findShapeByPosition(
       sprites,
-      mouseDownEvent.clientX,
-      mouseDownEvent.clientY
+      mouseDownEvent.offsetX,
+      mouseDownEvent.offsetY
     );
+    mouseDownEvent.x
 
     if (clickedSprite) {
       if (mouseDownEvent.ctrlKey) {
@@ -70,7 +71,7 @@ export const setupInputs = (cvs: HTMLCanvasElement) => {
   });
 
   cvs.addEventListener("dblclick", (mouseEvent) => {
-    const clickedSprite = findShapeByPosition(sprites, mouseEvent.clientX, mouseEvent.clientY);
+    const clickedSprite = findShapeByPosition(sprites, mouseEvent.offsetX, mouseEvent.offsetY);
 
     if (clickedSprite) {
       handleBringToFront(clickedSprite);
