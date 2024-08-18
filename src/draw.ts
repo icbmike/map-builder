@@ -3,33 +3,13 @@ import { assets } from "./assets";
 
 type Ctx = CanvasRenderingContext2D;
 
-export const draw = (ctx: Ctx, sprites: Sprite[], options: Options) => {
-    if (options.showGrid) {
-        drawGrid(ctx, options);
-    }
-
+export const draw = (ctx: Ctx, sprites: Sprite[]) => {
     for (let i = sprites.length - 1; i >= 0; i--) {
-        drawSprite(ctx, sprites[i], options);
+        drawSprite(ctx, sprites[i]);
     }
 }
 
-export const drawGrid = (ctx: Ctx, options: Options) => {
-    ctx.strokeStyle = 'black';
-    for (let i = options.tileSize; i <= ctx.canvas.width; i += options.tileSize) {
-
-        ctx.beginPath();
-        ctx.moveTo(i, 0);
-        ctx.lineTo(i, ctx.canvas.height);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(0, i);
-        ctx.lineTo(ctx.canvas.width, i);
-        ctx.stroke();
-    }
-}
-
-export const drawSprite = (ctx: Ctx, sprite: Sprite, options: Options) => {
+export const drawSprite = (ctx: Ctx, sprite: Sprite) => {
     switch (sprite.type) {
         case 'rect':
             drawRect(ctx, sprite);

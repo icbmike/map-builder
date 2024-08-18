@@ -1,17 +1,7 @@
-export const createCanvas = () => {
-    const cvs = document.createElement("canvas");
-
-    cvs.style.height = '100%';
-    cvs.style.width = cvs.style.height;
-    cvs.style.backgroundColor = 'white';
-    cvs.className = 'canvas';
-    document.getElementsByTagName('body')[0].prepend(cvs);
-
+export const configureCanvas = (cvs: HTMLCanvasElement) => {
     const dpr = window.devicePixelRatio || 1;
 
     const boundingRect = cvs.getBoundingClientRect()
-    cvs.width = cvs.getBoundingClientRect().width * dpr;
-    cvs.height = cvs.getBoundingClientRect().height * dpr;
 
     cvs.style.width = `${boundingRect.height}px`;
 

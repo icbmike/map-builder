@@ -1,0 +1,14 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: slategray;
+}
+
+.canvasContainer {
+    flex: 1 0 0;
+    min-height: 0;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
