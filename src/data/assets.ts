@@ -17,7 +17,6 @@ const loadImage = (src: string) => {
 export const assets: Record<string, HTMLImageElement | undefined> = {};
 
 export const loadAllAssets = async () => {
-
   const assetList: [string, string][] = [
     ['tree', './tree.png'],
     ['freddie', './freddie.png'],
@@ -44,7 +43,6 @@ export const loadAllAssets = async () => {
     ['path_tile', './path_tile.png'],
     ['path_corners', './path_corners.png'],
     ['path_inverse_corners', './path_inverse_corners.png'],
-
   ];
   
   const loadedAssets = await Promise.all(

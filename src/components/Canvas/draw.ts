@@ -1,5 +1,5 @@
-import { Circle, Options, Rectangle, Sprite, Texture } from "./models";
-import { assets } from "./assets";
+import { Circle, Rectangle, Sprite, Texture } from "../../models/models";
+import { assets } from "../../data/assets";
 
 type Ctx = CanvasRenderingContext2D;
 

@@ -1,7 +1,8 @@
 import { vec2 } from "gl-matrix";
-import { findShapeByPosition } from "./queries";
-import { sprites } from "./data";
-import { Sprite } from "./models";
+import { sprites } from "../../data/data";
+import { Sprite } from "../../models/models";
+import { findShapeByPosition } from '../../models/queries';
+
 
 const handleMove = (cvs: HTMLCanvasElement, clickedSprite: Sprite, mouseDownEvent: MouseEvent) => {
   const startingPositionVector: vec2 = [clickedSprite.position.x, clickedSprite.position.y];

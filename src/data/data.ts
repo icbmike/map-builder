@@ -1,5 +1,5 @@
-import { Sprite, Texture } from "./models";
 
+import { Sprite } from "../models/models";
 import { data } from "./data.json";
 
 export const sprites: Sprite[] = [
