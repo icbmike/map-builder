@@ -14,6 +14,7 @@ const config = {
     output: {
         path: path.resolve(__dirname, 'dist'),
     },
+    
     devServer: {
         open: true,
         host: 'localhost',
@@ -52,6 +53,11 @@ const config = {
         ],
     },
     resolve: {
+        alias: {
+            '~actions': path.resolve(__dirname, 'src/actions'),
+            '~reducers': path.resolve(__dirname, 'src/reducers'),
+            '~selectors': path.resolve(__dirname, 'src/selectors'),
+        },
         extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
     },
 };

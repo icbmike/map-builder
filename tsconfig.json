@@ -8,7 +8,10 @@
     "strict": true,
     "jsx": "react",
     "resolveJsonModule": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "~*": ["./src/*"] 
+    }
   },
   "files": ["src/index.tsx"]
 }

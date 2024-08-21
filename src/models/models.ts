@@ -41,7 +41,4 @@ export interface Texture extends BaseSprite {
 
 export type Sprite = Circle | Rectangle | Texture;
 
-export interface Options {
-    showGrid: boolean;
-    tileSize: number;
-}
+export type SelectedTool = 'select' | 'sprite';
