@@ -1,11 +1,9 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 import * as actions from "~actions";
-import { SelectedTool } from "~models/models";
-
 
 interface IState {
-    selectedTool?: SelectedTool
+    selectedTool?: string
 }
 
 const initialState: IState = {
