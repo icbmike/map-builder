@@ -59,6 +59,7 @@ const config = {
             '~selectors': path.resolve(__dirname, 'src/selectors'),
             '~sideEffects': path.resolve(__dirname, 'src/sideEffects'),
             '~redux': path.resolve(__dirname, 'src/redux'),
+            '~data': path.resolve(__dirname, 'src/data'),
         },
         extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
     },

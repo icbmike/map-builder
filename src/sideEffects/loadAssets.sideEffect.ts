@@ -1,4 +1,4 @@
-import { AssetList } from "~data/assets";
+import { assets } from "~data/assets";
 import * as actions from "~actions";
 import { createSideEffect } from "~redux/createSideEffect";
 
@@ -51,13 +51,9 @@ export const loadAssetsSideEffect = createSideEffect(actions.loadAllAssets, asyn
         assetList.map(([assetName, assetUrl]) => loadImage(assetUrl).then(i => ({ assetName, image: i })))
     );
     
-    const assets: AssetList = loadedAssets.reduce(
-        (acc, next) => ({
-            ...acc,
-            [next.assetName] : next.image
-        }), 
-        {}
-    );
+    loadedAssets.forEach(({assetName, image}) => {
+        assets[assetName] = image;
+    })
 
-    return actions.loadAllAssetsDone(assets);
+    return actions.loadAllAssetsDone();
 });

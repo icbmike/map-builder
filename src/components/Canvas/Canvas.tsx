@@ -6,6 +6,7 @@ import { setupInputs } from "./inputs";
 import "./Canvas.scss"
 import { useSelector } from "react-redux";
 import * as selectors from '~selectors';
+import { assets } from "~data/assets";
 
 const configureCanvas = (cvs: HTMLCanvasElement) => {
     const dpr = window.devicePixelRatio || 1;
@@ -31,7 +32,6 @@ const configureCanvas = (cvs: HTMLCanvasElement) => {
 }
 
 export const Canvas = () => {
-    const assets = useSelector(selectors.getAssets);
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {

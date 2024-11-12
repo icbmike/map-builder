@@ -3,4 +3,4 @@ import { TState } from "~redux/store";
 
 export const getAssetsState = (state: TState) => state.assets;
 
-export const getAssets = createSelector(getAssetsState, state => state.assets);
+export const isLoadingAssets = createSelector(getAssetsState, s => s.assetsLoading);

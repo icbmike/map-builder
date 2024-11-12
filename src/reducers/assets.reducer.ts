@@ -5,11 +5,9 @@ import { AssetList } from "~data/assets";
 
 interface IState {
     assetsLoading: boolean;
-    assets: AssetList
 }
 
 const initialState: IState = {
-    assets: {},
     assetsLoading: false
 };
 
@@ -21,6 +19,5 @@ export const assetsReducer = createReducer(initialState, builder =>
     .addCase(actions.loadAllAssetsDone, (state, action) => ({
         ...state,
         assetsLoading: false,
-        assets: action.payload
     }))
 );
