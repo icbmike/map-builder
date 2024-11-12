@@ -4,8 +4,6 @@ import { draw } from "./draw";
 import { setupInputs } from "./inputs";
 
 import "./Canvas.scss"
-import { useSelector } from "react-redux";
-import * as selectors from '~selectors';
 import { assets } from "~data/assets";
 
 const configureCanvas = (cvs: HTMLCanvasElement) => {

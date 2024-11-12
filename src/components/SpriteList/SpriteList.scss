@@ -1,0 +1,25 @@
+.SpriteList {
+    padding: 0 20px;
+
+    &-sprite {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgb(31, 74, 74);
+        }
+    }
+    
+    &-spriteName {
+        margin-right: 8px;
+    }
+    
+    &-spriteImage {
+        max-width: 200px;
+        max-height: 80px;
+    }
+}
+
