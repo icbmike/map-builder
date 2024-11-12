@@ -1,15 +1,15 @@
+import { AssetList } from "~data/assets";
 import { Circle, Rectangle, Sprite, Texture } from "../../models/models";
-import { assets } from "../../data/assets";
 
 type Ctx = CanvasRenderingContext2D;
 
-export const draw = (ctx: Ctx, sprites: Sprite[]) => {
+export const draw = (ctx: Ctx, sprites: Sprite[], assets: AssetList) => {
     for (let i = sprites.length - 1; i >= 0; i--) {
-        drawSprite(ctx, sprites[i]);
+        drawSprite(ctx, sprites[i], assets);
     }
 }
 
-export const drawSprite = (ctx: Ctx, sprite: Sprite) => {
+export const drawSprite = (ctx: Ctx, sprite: Sprite, assets: AssetList) => {
     switch (sprite.type) {
         case 'rect':
             drawRect(ctx, sprite);
@@ -18,7 +18,7 @@ export const drawSprite = (ctx: Ctx, sprite: Sprite) => {
             drawCircle(ctx, sprite);
             break;
         case 'texture':
-            drawTexture(ctx, sprite);
+            drawTexture(ctx, sprite, assets);
             break;
     }
 }
@@ -40,7 +40,7 @@ const drawCircle = (ctx: Ctx, circle: Circle) => {
     ctx.fill();
 }
 
-const drawTexture = (ctx: Ctx, texture: Texture) => {
+const drawTexture = (ctx: Ctx, texture: Texture, assets: AssetList) => {
     const { assetName, width, height, position: { x, y }, repeat, sourceRect } = texture;
 
     const img = assets[assetName]

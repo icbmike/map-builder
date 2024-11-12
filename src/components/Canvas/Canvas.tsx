@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react"
-import { loadAllAssets } from "../../data/assets";
 import { sprites } from "../../data/data";
 import { draw } from "./draw";
 import { setupInputs } from "./inputs";
 
 import "./Canvas.scss"
+import { useSelector } from "react-redux";
+import * as selectors from '~selectors';
 
 const configureCanvas = (cvs: HTMLCanvasElement) => {
     const dpr = window.devicePixelRatio || 1;
@@ -30,6 +31,7 @@ const configureCanvas = (cvs: HTMLCanvasElement) => {
 }
 
 export const Canvas = () => {
+    const assets = useSelector(selectors.getAssets);
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -42,17 +44,15 @@ export const Canvas = () => {
                 
             // Define and start render loop
             const render = () => {
-            requestAnimationFrame(() => {
-                ctx.clearRect(0, 0, cvs.width, cvs.height);
-                draw(ctx, sprites);
-                
-                render();
-            });
+                requestAnimationFrame(() => {
+                    ctx.clearRect(0, 0, cvs.width, cvs.height);
+                    draw(ctx, sprites, assets);
+                    
+                    render();
+                });
             };
             
-            loadAllAssets().then(() => {
             render();
-            });
         }
     }, [canvasRef.current])
 

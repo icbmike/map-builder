@@ -57,6 +57,8 @@ const config = {
             '~actions': path.resolve(__dirname, 'src/actions'),
             '~reducers': path.resolve(__dirname, 'src/reducers'),
             '~selectors': path.resolve(__dirname, 'src/selectors'),
+            '~sideEffects': path.resolve(__dirname, 'src/sideEffects'),
+            '~redux': path.resolve(__dirname, 'src/redux'),
         },
         extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
     },
