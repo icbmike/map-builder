@@ -8,6 +8,7 @@ import * as actions from "~actions";
 import * as selectors from "~selectors";
 import { Accordion, AccordionItem } from '../Accordion';
 import { SpriteList } from '../SpriteList/SpriteList';
+import { SelectedTool } from "~models/models"
 
 export const Toolbar = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export const Toolbar = () => {
 
     return <div className="toolbar">
         <h2 className="tools_title">Tools</h2>
-        <Accordion selectedItem={selectedTool} onItemOpened={name => dispatch(actions.setSelectedTool(name))}>
+        <Accordion selectedItem={selectedTool} onItemOpened={(name: string) => dispatch(actions.setSelectedTool(name as SelectedTool))}>
             <AccordionItem 
                 name="select" 
                 displayText={

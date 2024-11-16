@@ -25,8 +25,8 @@ export const Accordion = ({ children, onItemOpened, selectedItem }: IAccordionPr
     </AccordionContext.Provider>;
 }
 
-export interface IAccordionItemProps {
-    name: string
+export interface IAccordionItemProps<TName = string> {
+    name: TName
     displayText: ReactNode
     children?: ReactNode
 }

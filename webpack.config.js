@@ -55,6 +55,7 @@ const config = {
     resolve: {
         alias: {
             '~actions': path.resolve(__dirname, 'src/actions'),
+            '~components': path.resolve(__dirname, 'src/components'),
             '~reducers': path.resolve(__dirname, 'src/reducers'),
             '~selectors': path.resolve(__dirname, 'src/selectors'),
             '~sideEffects': path.resolve(__dirname, 'src/sideEffects'),
@@ -68,8 +69,6 @@ const config = {
 module.exports = () => {
     if (isProduction) {
         config.mode = 'production';
-
-
     } else {
         config.mode = 'development';
     }
