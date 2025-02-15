@@ -61,6 +61,7 @@ const config = {
             '~sideEffects': path.resolve(__dirname, 'src/sideEffects'),
             '~redux': path.resolve(__dirname, 'src/redux'),
             '~data': path.resolve(__dirname, 'src/data'),
+            '~models': path.resolve(__dirname, 'src/models'),
         },
         extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
     },

@@ -1,58 +1,48 @@
-import React, { useEffect, useRef } from "react"
-import { sprites } from "../../data/data";
-import { draw } from "./draw";
-import { setupInputs } from "./inputs";
+import React, { useEffect, useRef } from 'react';
+import { sprites } from '../../data/data';
+import { draw } from './draw';
+import { setupInputs } from './inputs/inputs';
 
-import "./Canvas.scss"
-import { assets } from "~data/assets";
-
-const configureCanvas = (cvs: HTMLCanvasElement) => {
-    const dpr = window.devicePixelRatio || 1;
-
-    const boundingRect = cvs.getBoundingClientRect()
-
-    cvs.style.width = `${boundingRect.height}px`;
-
-    cvs.width = cvs.getBoundingClientRect().width * dpr;
-    cvs.height = cvs.getBoundingClientRect().height * dpr;
-    
-    const ctx = cvs.getContext('2d')!;
-
-    ctx.scale(dpr, dpr);
-
-    window.addEventListener('resize', () => {
-        cvs.width = cvs.getBoundingClientRect().width * dpr;
-        cvs.height = cvs.getBoundingClientRect().height * dpr;
-        ctx.scale(dpr, dpr);
-    })
-
-    return { cvs, ctx };
-}
+import './Canvas.scss';
+import { assets } from '~data/assets';
+import { configureCanvas } from './configureCanvas';
+import { useDispatch, useSelector, useStore } from 'react-redux';
+import * as selectors from '~selectors';
+import { TState } from '~redux/store';
 
 export const Canvas = () => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const selectedTool = useSelector(selectors.getSelectedTool);
+  const store = useStore<TState>();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        if(canvasRef.current){
-            const { ctx, cvs } = configureCanvas(canvasRef.current);
-            
-            sprites.sort((a, b) => b.position.z - a.position.z);
-            
-            setupInputs(cvs);
-                
-            // Define and start render loop
-            const render = () => {
-                requestAnimationFrame(() => {
-                    ctx.clearRect(0, 0, cvs.width, cvs.height);
-                    draw(ctx, sprites, assets);
-                    
-                    render();
-                });
-            };
-            
-            render();
-        }
-    }, [canvasRef.current])
+  useEffect(() => {
+    if (canvasRef.current) {
+      const { ctx, cvs } = configureCanvas(canvasRef.current);
 
-    return <canvas ref={canvasRef} className="canvas"></canvas>
-}
+      sprites.sort((a, b) => b.position.z - a.position.z);
+
+      const inputDisposer = setupInputs(cvs, selectedTool, store, dispatch);
+
+      let requestId = 0;
+      // Define and start render loop
+      const render = () => {
+        requestId = requestAnimationFrame(() => {
+          ctx.clearRect(0, 0, cvs.width, cvs.height);
+          draw(ctx, sprites, assets, store);
+
+          render();
+        });
+      };
+
+      render();
+
+      return () => {
+        inputDisposer();
+        cancelAnimationFrame(requestId);
+      };
+    }
+  }, [canvasRef.current, selectedTool]);
+
+  return <canvas ref={canvasRef} className="canvas"></canvas>;
+};
