@@ -8,7 +8,6 @@ import { store } from '../../redux/store';
 import { Provider } from 'react-redux';
 import { KeyboardShortcuts } from '../KeyboardShortcuts';
 import * as actions from '~actions';
-import { Cursor } from '~components/Cursor/Cursor';
 
 export const App = () => {
   store.dispatch(actions.loadAllAssets());

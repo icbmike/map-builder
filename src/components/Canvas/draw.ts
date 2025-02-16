@@ -101,7 +101,9 @@ const drawTexture = (ctx: Ctx, texture: Texture, assets: AssetList) => {
   const img = assets[assetName];
   if (img) {
     if (repeat) {
-      ctx.fillStyle = ctx.createPattern(img, 'repeat')!;
+      const pattern = ctx.createPattern(img, 'repeat')!;
+      pattern.setTransform(new DOMMatrix().translate(x, y));
+      ctx.fillStyle = pattern;
       ctx.fillRect(x, y, repeat.timesX * width, repeat.timesY * height);
     } else if (sourceRect) {
       ctx.drawImage(
