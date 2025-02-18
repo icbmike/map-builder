@@ -9,12 +9,26 @@ import { configureCanvas } from './configureCanvas';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import * as selectors from '~selectors';
 import { TState } from '~redux/store';
+import { download } from '~util/download';
 
 export const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const selectedTool = useSelector(selectors.getSelectedTool);
   const store = useStore<TState>();
   const dispatch = useDispatch();
+
+  const messageHandler = (messageEvent: MessageEvent) => {
+    if (
+      messageEvent.data.event === 'downloadImageClicked' &&
+      canvasRef.current
+    ) {
+      canvasRef.current.toBlob((b) => {
+        if (b) {
+          download(b);
+        }
+      }, 'image/png');
+    }
+  };
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -37,9 +51,12 @@ export const Canvas = () => {
 
       render();
 
+      window.addEventListener('message', messageHandler);
+
       return () => {
         inputDisposer();
         cancelAnimationFrame(requestId);
+        window.removeEventListener('message', messageHandler);
       };
     }
   }, [canvasRef.current, selectedTool]);

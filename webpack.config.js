@@ -62,6 +62,7 @@ const config = {
             '~redux': path.resolve(__dirname, 'src/redux'),
             '~data': path.resolve(__dirname, 'src/data'),
             '~models': path.resolve(__dirname, 'src/models'),
+            '~util': path.resolve(__dirname, 'src/util'),
         },
         extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
     },
