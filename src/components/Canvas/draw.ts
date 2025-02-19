@@ -3,6 +3,7 @@ import { Circle, Rectangle, Sprite, Texture } from '../../models/models';
 import { TState } from '~redux/store';
 import { Store } from '@reduxjs/toolkit';
 import * as selectors from '~selectors';
+import { initLightMap } from './lightMap';
 
 type Ctx = CanvasRenderingContext2D;
 
@@ -16,6 +17,8 @@ export const draw = (
     drawSprite(ctx, sprites[i], assets);
   }
 
+  drawLighting(ctx);
+
   const state = store.getState();
 
   const selectedTool = selectors.getSelectedTool(state);
@@ -23,6 +26,24 @@ export const draw = (
   if (selectedTool === 'sprite') {
     drawSpriteTool(ctx, assets, state);
   }
+};
+
+export const drawLighting = (ctx: Ctx) => {
+  const lightMap = initLightMap(ctx.canvas.width, ctx.canvas.height);
+
+  const imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  const { data } = imageData;
+
+  for (let i = 0; i < data.length; i += 4) {
+    const lightMapIndex = Math.floor(i / 4);
+    const lightMapModifier = lightMap[lightMapIndex] / 255;
+    data[i] = data[i] * lightMapModifier; //red
+    data[i + 1] = data[i + 1] * lightMapModifier; //green
+    data[i + 2] = data[i + 2] * lightMapModifier; // blue
+    //data[i + 3] = data[i + 3]; // alpha
+  }
+
+  ctx.putImageData(imageData, 0, 0);
 };
 
 export const drawSpriteTool = (ctx: Ctx, assets: AssetList, state: TState) => {
