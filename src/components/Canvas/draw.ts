@@ -16,10 +16,12 @@ export const draw = (
   for (let i = sprites.length - 1; i >= 0; i--) {
     drawSprite(ctx, sprites[i], assets);
   }
-
-  drawLighting(ctx);
-
   const state = store.getState();
+  const isLightingEnabled = selectors.getIsLightingEnabled(state);
+
+  if (isLightingEnabled) {
+    drawLighting(ctx, state);
+  }
 
   const selectedTool = selectors.getSelectedTool(state);
 
@@ -28,8 +30,15 @@ export const draw = (
   }
 };
 
-export const drawLighting = (ctx: Ctx) => {
-  const lightMap = initLightMap(ctx.canvas.width, ctx.canvas.height);
+export const drawLighting = (ctx: Ctx, state: TState) => {
+  const lights = selectors.getLights(state);
+  const ambientBrightness = selectors.getAmbientBrightness(state);
+  const lightMap = initLightMap(
+    ctx.canvas.width,
+    ctx.canvas.height,
+    lights,
+    ambientBrightness,
+  );
 
   const imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   const { data } = imageData;

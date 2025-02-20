@@ -1,6 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowPointer, faImage } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowPointer,
+  faImage,
+  faLightbulb,
+} from '@fortawesome/free-solid-svg-icons';
 
 import './Toolbar.scss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +13,7 @@ import * as selectors from '~selectors';
 import { Accordion, AccordionItem } from '../Accordion';
 import { SpriteList } from '../SpriteList/SpriteList';
 import { SelectedTool } from '~models/models';
+import { LightTool } from '~components/LightTool/LightTool';
 
 export const Toolbar = () => {
   const dispatch = useDispatch();
@@ -43,6 +48,17 @@ export const Toolbar = () => {
           }
         >
           <SpriteList />
+        </AccordionItem>
+        <AccordionItem
+          name="light"
+          displayText={
+            <>
+              <span className="tool-name">Light Tool</span>
+              <FontAwesomeIcon icon={faLightbulb} />
+            </>
+          }
+        >
+          <LightTool />
         </AccordionItem>
       </Accordion>
     </div>

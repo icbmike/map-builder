@@ -1,29 +1,21 @@
-let lightMap: Uint8ClampedArray;
+import { Light } from '~models/models';
 
-const lights = [
-  {
-    centreX: 300,
-    centreY: 300,
-    radius: 200,
-    brightness: 255,
-  },
-];
+export const initLightMap = (
+  width: number,
+  height: number,
+  lights: Light[],
+  ambientBrightness: number,
+) => {
+  const lightMap = new Uint8ClampedArray(width * height);
 
-export const initLightMap = (width: number, height: number) => {
-  if (lightMap) {
-    return lightMap;
-  }
-
-  lightMap = new Uint8ClampedArray(width * height);
-
-  // Set ambient darkness to 50%
+  // Set ambient brightness
   for (let i = 0; i < lightMap.length; i++) {
-    lightMap[i] = 255 * 0.5;
+    lightMap[i] = ambientBrightness;
   }
 
   for (const light of lights) {
     const { centreX, centreY, radius, brightness } = light;
-    for (let a = 0; a <= Math.PI * 2; a += 0.0175) {
+    for (let a = 0; a <= Math.PI * 2; a += 0.001) {
       // increment in radians by ~1 deg
       for (let r = 0; r < radius; r++) {
         const x = Math.floor(centreX + r * Math.cos(a));
