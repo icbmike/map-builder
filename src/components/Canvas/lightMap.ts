@@ -20,11 +20,13 @@ export const initLightMap = (
       for (let r = 0; r < radius; r++) {
         const x = Math.floor(centreX + r * Math.cos(a));
         const y = Math.floor(centreY + r * Math.sin(a));
-        const index = y * width + x;
-        lightMap[index] = Math.max(
-          ((radius - r) / radius) * brightness,
-          lightMap[index],
-        );
+        if (x >= 0 && x < width && y >= 0 && y < height) {
+          const index = y * width + x;
+          lightMap[index] = Math.max(
+            ((radius - r) / radius) * brightness,
+            lightMap[index],
+          );
+        }
       }
     }
   }

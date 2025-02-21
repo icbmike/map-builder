@@ -37,11 +37,18 @@ export const LightTool = () => {
         />
       </label>
       Lights
-      <button>
+      <button onClick={() => dispatch(actions.addLight())}>
         <FontAwesomeIcon icon={faAdd} />
       </button>
       {lights.map((l, i) => (
-        <LightForm key={i} light={l} />
+        <LightForm
+          key={i}
+          light={l}
+          onDelete={() => dispatch(actions.removeLight({ index: i }))}
+          onLightChange={(l) =>
+            dispatch(actions.updateLight({ index: i, light: l }))
+          }
+        />
       ))}
     </div>
   );

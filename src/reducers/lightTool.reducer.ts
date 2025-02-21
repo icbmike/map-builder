@@ -30,5 +30,26 @@ export const lightToolReducer = createReducer(initialState, (builder) =>
     .addCase(actions.setAmbientBrightness, (state, { payload }) => ({
       ...state,
       ambientBrightness: payload,
+    }))
+    .addCase(actions.removeLight, (state, { payload }) => ({
+      ...state,
+      lights: state.lights.filter((_, i) => i !== payload.index),
+    }))
+    .addCase(actions.updateLight, (state, { payload }) => {
+      const { index, light } = payload;
+      const lights = [...state.lights];
+      lights[index] = light;
+
+      return {
+        ...state,
+        lights,
+      };
+    })
+    .addCase(actions.addLight, (state) => ({
+      ...state,
+      lights: [
+        ...state.lights,
+        { brightness: 255, centreX: 0, centreY: 0, radius: 10 },
+      ],
     })),
 );
