@@ -13,10 +13,13 @@ export const draw = (
   assets: AssetList,
   store: Store<TState>,
 ) => {
+  const state = store.getState();
+
+  drawBackground(ctx, assets, state);
+
   for (let i = sprites.length - 1; i >= 0; i--) {
     drawSprite(ctx, sprites[i], assets);
   }
-  const state = store.getState();
   const isLightingEnabled = selectors.getIsLightingEnabled(state);
 
   if (isLightingEnabled) {
@@ -152,3 +155,20 @@ const drawTexture = (ctx: Ctx, texture: Texture, assets: AssetList) => {
     }
   }
 };
+
+function drawBackground(ctx: Ctx, assets: AssetList, state: TState) {
+  const backgroundAssetName = selectors.getBackgroundAsset(state);
+
+  if(!backgroundAssetName) return;
+
+  const backgroundAsset = assets[backgroundAssetName];
+
+  if(!backgroundAsset) return;
+
+  const pattern = ctx.createPattern(backgroundAsset, 'repeat')!;
+
+  ctx.fillStyle = pattern;
+
+  ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+}
+

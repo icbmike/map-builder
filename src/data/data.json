@@ -1,19 +1,5 @@
 {
   "data": [
-    {
-      "type": "texture",
-      "assetName": "grass_tile",
-      "height": 32,
-      "width": 32,
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": -10
-      },
-      "repeat": {
-        "timesX": 50,
-        "timesY": 20
-      }
-    }
+   
   ]
 }
