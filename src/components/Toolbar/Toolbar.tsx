@@ -20,6 +20,11 @@ import { CanvasSettings } from '~components/CanvasSettings/CanvasSettings';
 export const Toolbar = () => {
   const dispatch = useDispatch();
   const selectedTool = useSelector(selectors.getSelectedTool);
+  const selectedSprite = useSelector(selectors.getSelectedSprite);
+
+  const spriteClick = (assetName: string) => {
+    dispatch(actions.setSelectedSprite({ assetName }));
+  };
 
   return (
     <div className="toolbar">
@@ -30,12 +35,15 @@ export const Toolbar = () => {
           dispatch(actions.setSelectedTool(name as SelectedTool))
         }
       >
-        <AccordionItem name={SelectedTool.CanvasSettings} displayText={
-          <>
-            <span className='tool-name'>Canvas Settings</span>
-            <FontAwesomeIcon icon={faCog}/>
-          </>
-        }>
+        <AccordionItem
+          name={SelectedTool.CanvasSettings}
+          displayText={
+            <>
+              <span className="tool-name">Canvas Settings</span>
+              <FontAwesomeIcon icon={faCog} />
+            </>
+          }
+        >
           <CanvasSettings />
         </AccordionItem>
         <AccordionItem
@@ -57,7 +65,7 @@ export const Toolbar = () => {
             </>
           }
         >
-          <SpriteList />
+          <SpriteList displayMode='list' onSpriteSelected={spriteClick} selectedAsset={selectedSprite}/>
         </AccordionItem>
         <AccordionItem
           name={SelectedTool.Light}

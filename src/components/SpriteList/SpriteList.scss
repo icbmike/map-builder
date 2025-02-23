@@ -1,7 +1,14 @@
 .SpriteList {
     padding: 0 20px;
     display: flex;
-    flex-direction: column;
+
+    &.list {
+        flex-direction: column;
+    }
+
+    &.grid {
+        flex-wrap: wrap;
+    }
 
     &-sprite {
         font-size: 16px;
@@ -14,8 +21,14 @@
         padding: 8px;
         cursor: pointer;
 
-        &:hover {
+        &:hover, &.selected {
             background-color: rgb(31, 74, 74);
+        }
+
+        .grid & {
+            width: 220px;
+            display: flex;
+            flex-direction: column-reverse;
         }
     }
     
