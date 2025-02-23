@@ -14,6 +14,7 @@ import { download } from '~util/download';
 export const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const selectedTool = useSelector(selectors.getSelectedTool);
+  const aspectRatio = useSelector(selectors.getAspectRatio);
   const store = useStore<TState>();
   const dispatch = useDispatch();
 
@@ -32,7 +33,7 @@ export const Canvas = () => {
 
   useEffect(() => {
     if (canvasRef.current) {
-      const { ctx, cvs } = configureCanvas(canvasRef.current, 16 / 9);
+      const { ctx, cvs } = configureCanvas(canvasRef.current, aspectRatio);
 
       sprites.sort((a, b) => b.position.z - a.position.z);
 
@@ -59,7 +60,7 @@ export const Canvas = () => {
         window.removeEventListener('message', messageHandler);
       };
     }
-  }, [canvasRef.current, selectedTool]);
+  }, [canvasRef.current, selectedTool, aspectRatio]);
 
   return <canvas ref={canvasRef} className="canvas"></canvas>;
 };

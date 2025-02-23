@@ -4,6 +4,7 @@ import {
   faArrowPointer,
   faImage,
   faLightbulb,
+  faCog,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './Toolbar.scss';
@@ -14,6 +15,7 @@ import { Accordion, AccordionItem } from '../Accordion';
 import { SpriteList } from '../SpriteList/SpriteList';
 import { SelectedTool } from '~models/models';
 import { LightTool } from '~components/LightTool/LightTool';
+import { CanvasSettings } from '~components/CanvasSettings/CanvasSettings';
 
 export const Toolbar = () => {
   const dispatch = useDispatch();
@@ -28,6 +30,14 @@ export const Toolbar = () => {
           dispatch(actions.setSelectedTool(name as SelectedTool))
         }
       >
+        <AccordionItem name="canvasSettings" displayText={
+          <>
+            <span className='tool-name'>Canvas Settings</span>
+            <FontAwesomeIcon icon={faCog}/>
+          </>
+        }>
+          <CanvasSettings />
+        </AccordionItem>
         <AccordionItem
           name="select"
           displayText={
