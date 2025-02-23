@@ -13,7 +13,9 @@ export const setupInputs = (
 ): Disposer => {
   if (selectedTool === 'select') {
     return setupSelectToolInputs(cvs);
-  } else {
+  } else if(selectedTool === 'sprite') {
     return setupSpriteToolInputs(cvs, store, dispatch);
-  }
+  } 
+    
+  return () => {};
 };

@@ -17,6 +17,8 @@ const assetList: [string, string][] = [
     ['round_tree', './round_tree.png'],
     ['round_tree_dark_green', './round_tree_dark_green.png'],
     ['rose', './rose.png'],
+    ['archer', './archer.png'],
+
     ['water_tile', './water_tile.png'],
     ['water_inverse_corners', './water_inverse_corners.png'],
     ['water_corners', './water_corners.png'],
