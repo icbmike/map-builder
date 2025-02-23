@@ -1,5 +1,5 @@
 import { AssetList } from '~data/assets';
-import { Circle, Rectangle, Sprite, Texture } from '../../models/models';
+import { Circle, Rectangle, SelectedTool, Sprite, Texture } from '../../models/models';
 import { TState } from '~redux/store';
 import { Store } from '@reduxjs/toolkit';
 import * as selectors from '~selectors';
@@ -25,7 +25,7 @@ export const draw = (
 
   const selectedTool = selectors.getSelectedTool(state);
 
-  if (selectedTool === 'sprite') {
+  if (selectedTool === SelectedTool.Sprite) {
     drawSpriteTool(ctx, assets, state);
   }
 };

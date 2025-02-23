@@ -30,7 +30,7 @@ export const Toolbar = () => {
           dispatch(actions.setSelectedTool(name as SelectedTool))
         }
       >
-        <AccordionItem name="canvasSettings" displayText={
+        <AccordionItem name={SelectedTool.CanvasSettings} displayText={
           <>
             <span className='tool-name'>Canvas Settings</span>
             <FontAwesomeIcon icon={faCog}/>
@@ -39,7 +39,7 @@ export const Toolbar = () => {
           <CanvasSettings />
         </AccordionItem>
         <AccordionItem
-          name="select"
+          name={SelectedTool.Select}
           displayText={
             <>
               <span className="tool-name">Select Tool</span>
@@ -49,7 +49,7 @@ export const Toolbar = () => {
         />
 
         <AccordionItem
-          name="sprite"
+          name={SelectedTool.Sprite}
           displayText={
             <>
               <span className="tool-name">Sprite Tool</span>
@@ -60,7 +60,7 @@ export const Toolbar = () => {
           <SpriteList />
         </AccordionItem>
         <AccordionItem
-          name="light"
+          name={SelectedTool.Light}
           displayText={
             <>
               <span className="tool-name">Light Tool</span>

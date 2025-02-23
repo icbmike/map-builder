@@ -41,7 +41,12 @@ export interface Texture extends BaseSprite {
 
 export type Sprite = Circle | Rectangle | Texture;
 
-export type SelectedTool = 'select' | 'sprite' | 'light' | 'canvasSettings';
+export enum SelectedTool {
+  Select = 'select',
+  Sprite = 'sprite',
+  Light = 'light',
+  CanvasSettings = 'canvasSettings'
+}
 
 export interface Light {
   centreX: number;

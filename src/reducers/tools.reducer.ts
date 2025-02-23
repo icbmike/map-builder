@@ -8,7 +8,7 @@ interface IState {
 }
 
 const initialState: IState = {
-  selectedTool: 'select',
+  selectedTool: SelectedTool.Select,
 };
 
 export const toolsReducer = createReducer(initialState, (builder) =>
