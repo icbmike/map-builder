@@ -1,9 +1,9 @@
-export const configureCanvas = (cvs: HTMLCanvasElement) => {
+export const configureCanvas = (cvs: HTMLCanvasElement, aspectRatio: number) => {
   const dpr = window.devicePixelRatio || 1;
 
   const boundingRect = cvs.getBoundingClientRect();
 
-  cvs.style.width = `${boundingRect.height}px`;
+  cvs.style.width = `${boundingRect.height * aspectRatio}px`;
 
   cvs.width = cvs.getBoundingClientRect().width * dpr;
   cvs.height = cvs.getBoundingClientRect().height * dpr;

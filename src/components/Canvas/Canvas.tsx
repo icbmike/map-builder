@@ -32,7 +32,7 @@ export const Canvas = () => {
 
   useEffect(() => {
     if (canvasRef.current) {
-      const { ctx, cvs } = configureCanvas(canvasRef.current);
+      const { ctx, cvs } = configureCanvas(canvasRef.current, 16 / 9);
 
       sprites.sort((a, b) => b.position.z - a.position.z);
 

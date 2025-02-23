@@ -14,6 +14,7 @@
 
 .canvasContainer {
     padding: 20px;
-    position: relative;
-    margin: 0 auto;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
 }
