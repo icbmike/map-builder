@@ -18,12 +18,17 @@ const assetList: [string, string][] = [
     ['round_tree_dark_green', './round_tree_dark_green.png'],
     ['rose', './rose.png'],
     ['archer', './archer.png'],
+    ['cobblestone_tile', './cobblestone_tile.png'],
+    ['fountain', './fountain.png'],
+    ['lantern', './lantern.png'],
 
     ['water_tile', './water_tile.png'],
     ['water_inverse_corners', './water_inverse_corners.png'],
     ['water_corners', './water_corners.png'],
     ['water_vertical_sides', './water_vertical_sides.png'],
     ['water_horizontal_sides', './water_horizontal_sides.png'],
+    ['water_bank_top', './water_bank_top.png'],
+    ['water_bank_bottom', './water_bank_bottom.png'],
 
     ['path_horizontal_sides', './path_horizontal_sides.png'],
     ['path_vertical_sides', './path_vertical_sides.png'],
