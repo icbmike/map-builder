@@ -3,7 +3,7 @@ import { TState } from '~redux/store';
 
 export const getSpriteToolState = (state: TState) => state.spriteTool;
 
-export const getSelectedSprite = createSelector(
+export const getSelectedSpriteAssetName = createSelector(
   getSpriteToolState,
   (s) => s.selectedSpriteAssetName,
 );
@@ -14,3 +14,7 @@ export const getCursorState = createSelector(
 );
 
 export const getSprites = createSelector(getSpriteToolState, (s) => s.sprites);
+
+export const getSelectedSprite = createSelector(getSpriteToolState, (state) =>
+  state.sprites.find((s) => s.objectId === state.selectedSprite),
+);

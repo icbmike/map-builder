@@ -28,7 +28,7 @@ export const setupSpriteToolInputs = (
   const handleWheel = (wheelEvent: WheelEvent) => {
     const { zoom, x, y } = selectors.getCursorState(store.getState());
 
-    const newZoom = zoom + wheelEvent.deltaY * -0.01;
+    const newZoom = zoom + wheelEvent.deltaY * -0.001;
 
     dispatch(
       actions.setCursorState({
@@ -40,13 +40,15 @@ export const setupSpriteToolInputs = (
   };
 
   const handleClick = (mouseEvent: MouseEvent) => {
-    const selectedSprite = selectors.getSelectedSprite(store.getState());
+    const selectedSprite = selectors.getSelectedSpriteAssetName(
+      store.getState(),
+    );
     const { x, y, zoom } = selectors.getCursorState(store.getState());
 
     if (selectedSprite) {
       const img = assets[selectedSprite]!;
-      const width = img.width * zoom;
-      const height = img.height * zoom;
+      const width = Math.abs(img.width * zoom);
+      const height = Math.abs(img.height * zoom);
 
       const newSprite: Sprite = {
         assetName: selectedSprite,

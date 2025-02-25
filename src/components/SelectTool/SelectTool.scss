@@ -1,0 +1,27 @@
+.selectTool {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  &-property {
+    margin-bottom: 12px;
+
+    &-readOnlyValue {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: rgb(22, 22, 85);
+      padding: 4px;
+    }
+    &Input {
+      width: 60px;
+      margin-right: 8px;
+    }
+  }
+
+  &-propertySection {
+    &-title {
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    margin-bottom: 12px;
+  }
+}

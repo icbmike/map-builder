@@ -27,6 +27,8 @@ export const draw = (ctx: Ctx, assets: AssetList, store: Store<TState>) => {
 
   if (selectedTool === SelectedTool.Sprite) {
     drawSpriteTool(ctx, assets, state);
+  } else if (selectedTool === SelectedTool.Select) {
+    drawSelectTool(ctx, state);
   }
 };
 
@@ -113,7 +115,7 @@ export const drawSprite = (ctx: Ctx, sprite: Sprite, assets: AssetList) => {
   }
 };
 
-function drawBackground(ctx: Ctx, assets: AssetList, state: TState) {
+const drawBackground = (ctx: Ctx, assets: AssetList, state: TState) => {
   const backgroundAssetName = selectors.getBackgroundAsset(state);
 
   if (!backgroundAssetName) return;
@@ -127,4 +129,25 @@ function drawBackground(ctx: Ctx, assets: AssetList, state: TState) {
   ctx.fillStyle = pattern;
 
   ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-}
+};
+
+let selectBorderOffset = 0;
+
+const drawSelectTool = (ctx: Ctx, state: TState) => {
+  const selectedSprite = selectors.getSelectedSprite(state);
+
+  if (selectedSprite) {
+    const {
+      position: { x, y },
+      width,
+      height,
+    } = selectedSprite;
+
+    ctx.strokeStyle = 'white';
+    ctx.setLineDash([4, 2]);
+    ctx.lineDashOffset = selectBorderOffset;
+    ctx.strokeRect(x, y, width, height);
+
+    selectBorderOffset = (selectBorderOffset + 1) % 5;
+  }
+};

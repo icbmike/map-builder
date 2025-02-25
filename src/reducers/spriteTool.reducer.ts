@@ -10,6 +10,7 @@ interface IState {
     zoom: number;
   };
   sprites: Sprite[];
+  selectedSprite?: string;
 }
 
 const initialState: IState = {
@@ -86,5 +87,9 @@ export const spriteToolReducer = createReducer(initialState, (builder) => {
 
       spriteToMove.position.x = payload.x;
       spriteToMove.position.y = payload.y;
-    });
+    })
+    .addCase(actions.selectSprite, (state, { payload }) => ({
+      ...state,
+      selectedSprite: payload.objectId,
+    }));
 });

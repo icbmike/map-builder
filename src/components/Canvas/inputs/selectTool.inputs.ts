@@ -25,11 +25,7 @@ const handleMove = (
   const outVec: vec2 = [0, 0];
   vec2.subtract(outVec, startingPositionVector, mouseDownVector);
 
-  let didMouseMove = false;
-
   const mouseMoveHandler = (mouseMoveEvent: MouseEvent) => {
-    didMouseMove = true;
-
     dispatch(
       actions.moveSprite({
         objectId: clickedSprite.objectId!,
@@ -43,8 +39,7 @@ const handleMove = (
     cvs.removeEventListener('mousemove', mouseMoveHandler);
     cvs.removeEventListener('mouseup', mouseUpHandler);
 
-    if (!didMouseMove) {
-    }
+    dispatch(actions.selectSprite({ objectId: clickedSprite.objectId }));
   };
 
   cvs.addEventListener('mouseup', mouseUpHandler);
@@ -73,6 +68,8 @@ export const setupSelectToolInputs = (
       } else {
         handleMove(cvs, dispatch, clickedSprite, mouseDownEvent);
       }
+    } else {
+      dispatch(actions.selectSprite({ objectId: undefined }));
     }
   };
 

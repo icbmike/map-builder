@@ -16,11 +16,12 @@ import { SpriteList } from '../SpriteList/SpriteList';
 import { SelectedTool } from '~models/models';
 import { LightTool } from '~components/LightTool/LightTool';
 import { CanvasSettings } from '~components/CanvasSettings/CanvasSettings';
+import { SelectTool } from '~components/SelectTool/SelectTool';
 
 export const Toolbar = () => {
   const dispatch = useDispatch();
   const selectedTool = useSelector(selectors.getSelectedTool);
-  const selectedSprite = useSelector(selectors.getSelectedSprite);
+  const selectedSprite = useSelector(selectors.getSelectedSpriteAssetName);
 
   const spriteClick = (assetName: string) => {
     dispatch(actions.setSelectedSprite({ assetName }));
@@ -54,7 +55,9 @@ export const Toolbar = () => {
               <FontAwesomeIcon icon={faArrowPointer} />
             </>
           }
-        />
+        >
+          <SelectTool />
+        </AccordionItem>
 
         <AccordionItem
           name={SelectedTool.Sprite}
@@ -65,7 +68,11 @@ export const Toolbar = () => {
             </>
           }
         >
-          <SpriteList displayMode='list' onSpriteSelected={spriteClick} selectedAsset={selectedSprite}/>
+          <SpriteList
+            displayMode="list"
+            onSpriteSelected={spriteClick}
+            selectedAsset={selectedSprite}
+          />
         </AccordionItem>
         <AccordionItem
           name={SelectedTool.Light}
