@@ -1,16 +1,20 @@
 import React from 'react';
-import { listAssetNames, assets } from '~data/assets';
-
 import './SpriteList.scss';
+import { assets, listAssetNames } from '~data/assets';
 
 interface IProps {
   selectedAsset?: string;
   onSpriteSelected: (assetName: string) => void;
-  displayMode: 'list' | 'grid',
-  className?: string
+  displayMode: 'list' | 'grid';
+  className?: string;
 }
 
-export const SpriteList = ({ onSpriteSelected, selectedAsset, displayMode, className }: IProps) => {
+export const SpriteList = ({
+  onSpriteSelected,
+  selectedAsset,
+  displayMode,
+  className,
+}: IProps) => {
   const sprite = (assetName: string) => {
     return (
       <button
@@ -25,6 +29,8 @@ export const SpriteList = ({ onSpriteSelected, selectedAsset, displayMode, class
   };
 
   return (
-    <div className={`SpriteList ${displayMode} ${className}`}>{listAssetNames().map((an) => sprite(an))}</div>
+    <div className={`SpriteList ${displayMode} ${className}`}>
+      {listAssetNames().map((an) => sprite(an))}
+    </div>
   );
 };

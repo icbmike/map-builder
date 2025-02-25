@@ -1,5 +1,5 @@
 import { AssetList } from '~data/assets';
-import { Circle, Rectangle, SelectedTool, Sprite, Texture } from '../../models/models';
+import { SelectedTool, Sprite } from '../../models/models';
 import { TState } from '~redux/store';
 import { Store } from '@reduxjs/toolkit';
 import * as selectors from '~selectors';
@@ -7,17 +7,14 @@ import { initLightMap } from './lightMap';
 
 type Ctx = CanvasRenderingContext2D;
 
-export const draw = (
-  ctx: Ctx,
-  sprites: Sprite[],
-  assets: AssetList,
-  store: Store<TState>,
-) => {
+export const draw = (ctx: Ctx, assets: AssetList, store: Store<TState>) => {
   const state = store.getState();
 
   drawBackground(ctx, assets, state);
 
-  for (let i = sprites.length - 1; i >= 0; i--) {
+  const sprites = selectors.getSprites(state);
+
+  for (let i = 0; i < sprites.length; i++) {
     drawSprite(ctx, sprites[i], assets);
   }
   const isLightingEnabled = selectors.getIsLightingEnabled(state);
@@ -82,46 +79,6 @@ export const drawSpriteTool = (ctx: Ctx, assets: AssetList, state: TState) => {
 };
 
 export const drawSprite = (ctx: Ctx, sprite: Sprite, assets: AssetList) => {
-  switch (sprite.type) {
-    case 'rect':
-      drawRect(ctx, sprite);
-      break;
-    case 'circle':
-      drawCircle(ctx, sprite);
-      break;
-    case 'texture':
-      drawTexture(ctx, sprite, assets);
-      break;
-  }
-};
-
-const drawRect = (ctx: Ctx, rect: Rectangle) => {
-  const {
-    width,
-    height,
-    colour,
-    position: { x, y },
-  } = rect;
-
-  ctx.fillStyle = colour;
-
-  ctx.fillRect(x, y, width, height);
-};
-
-const drawCircle = (ctx: Ctx, circle: Circle) => {
-  const {
-    radius,
-    colour,
-    position: { x, y },
-  } = circle;
-
-  ctx.fillStyle = colour;
-  ctx.beginPath();
-  ctx.arc(x, y, radius, 0, Math.PI * 2);
-  ctx.fill();
-};
-
-const drawTexture = (ctx: Ctx, texture: Texture, assets: AssetList) => {
   const {
     assetName,
     width,
@@ -129,7 +86,7 @@ const drawTexture = (ctx: Ctx, texture: Texture, assets: AssetList) => {
     position: { x, y },
     repeat,
     sourceRect,
-  } = texture;
+  } = sprite;
 
   const img = assets[assetName];
   if (img) {
@@ -159,11 +116,11 @@ const drawTexture = (ctx: Ctx, texture: Texture, assets: AssetList) => {
 function drawBackground(ctx: Ctx, assets: AssetList, state: TState) {
   const backgroundAssetName = selectors.getBackgroundAsset(state);
 
-  if(!backgroundAssetName) return;
+  if (!backgroundAssetName) return;
 
   const backgroundAsset = assets[backgroundAssetName];
 
-  if(!backgroundAsset) return;
+  if (!backgroundAsset) return;
 
   const pattern = ctx.createPattern(backgroundAsset, 'repeat')!;
 
@@ -171,4 +128,3 @@ function drawBackground(ctx: Ctx, assets: AssetList, state: TState) {
 
   ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
-

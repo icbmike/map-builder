@@ -1,43 +1,18 @@
-import { store, TState } from '~redux/store';
+import { TState } from '~redux/store';
 import { Disposer } from '~util/disposer';
 import * as selectors from '~selectors';
-import { sprites } from '~data/data';
-import { Texture } from '~models/models';
 import { Dispatch, Store } from '@reduxjs/toolkit';
 import * as actions from '~actions';
 import { assets } from '~data/assets';
-
-const handleClick = (mouseEvent: MouseEvent) => {
-  const selectedSprite = selectors.getSelectedSprite(store.getState());
-  const { x, y, zoom } = selectors.getCursorState(store.getState());
-
-  if (selectedSprite) {
-    const img = assets[selectedSprite]!;
-    const width = img.width * zoom;
-    const height = img.height * zoom;
-
-    const newSprite: Texture = {
-      type: 'texture',
-      assetName: selectedSprite,
-      position: {
-        x: x - width / 2,
-        y: y - height / 2,
-        z: Math.max(...sprites.map((s) => s.position.z)) + 1,
-      },
-      width,
-      height,
-    };
-
-    sprites.push(newSprite);
-    sprites.sort((a, b) => b.position.z - a.position.z);
-  }
-};
+import { Sprite } from '~models/models';
 
 export const setupSpriteToolInputs = (
   cvs: HTMLCanvasElement,
   store: Store<TState>,
   dispatch: Dispatch,
 ): Disposer => {
+  const sprites = selectors.getSprites(store.getState());
+
   const handleMouseMove = (mouseEvent: MouseEvent) => {
     const { zoom } = selectors.getCursorState(store.getState());
 
@@ -62,6 +37,30 @@ export const setupSpriteToolInputs = (
         zoom: newZoom,
       }),
     );
+  };
+
+  const handleClick = (mouseEvent: MouseEvent) => {
+    const selectedSprite = selectors.getSelectedSprite(store.getState());
+    const { x, y, zoom } = selectors.getCursorState(store.getState());
+
+    if (selectedSprite) {
+      const img = assets[selectedSprite]!;
+      const width = img.width * zoom;
+      const height = img.height * zoom;
+
+      const newSprite: Sprite = {
+        assetName: selectedSprite,
+        position: {
+          x: x - width / 2,
+          y: y - height / 2,
+          z: Math.max(...sprites.map((s) => s.position.z)) + 1,
+        },
+        width,
+        height,
+      };
+
+      dispatch(actions.addSprite(newSprite));
+    }
   };
 
   cvs.addEventListener('click', handleClick);

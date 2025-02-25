@@ -12,3 +12,5 @@ export const getCursorState = createSelector(
   getSpriteToolState,
   (s) => s.cursorState,
 );
+
+export const getSprites = createSelector(getSpriteToolState, (s) => s.sprites);

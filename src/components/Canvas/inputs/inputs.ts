@@ -12,10 +12,10 @@ export const setupInputs = (
   dispatch: Dispatch,
 ): Disposer => {
   if (selectedTool === 'select') {
-    return setupSelectToolInputs(cvs);
-  } else if(selectedTool === 'sprite') {
+    return setupSelectToolInputs(cvs, store, dispatch);
+  } else if (selectedTool === 'sprite') {
     return setupSpriteToolInputs(cvs, store, dispatch);
-  } 
-    
+  }
+
   return () => {};
 };

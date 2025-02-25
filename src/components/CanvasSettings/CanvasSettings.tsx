@@ -4,8 +4,8 @@ import './CanvasSettings.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import * as selectors from '~selectors';
 import * as actions from '~actions';
-import { assets } from '~data/assets';
 import { SelectBackgroundAssetModal } from './SelectBackgroundAssetModal/SelectBackgroundAssetModal';
+import { assets } from '~data/assets';
 
 export const CanvasSettings = () => {
   const dispatch = useDispatch();
@@ -23,9 +23,9 @@ export const CanvasSettings = () => {
       actions.setCanvasSettings({
         aspectRatio,
         backgroundAsset: assetName,
-      }));
-  }
-
+      }),
+    );
+  };
 
   return (
     <>

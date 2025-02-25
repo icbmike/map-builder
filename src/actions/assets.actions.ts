@@ -1,5 +1,4 @@
-import { createAction } from "@reduxjs/toolkit";
-import { AssetList } from '../data/assets';
+import { createAction } from '@reduxjs/toolkit';
 
 const actionType = 'LOAD_ASSETS';
 

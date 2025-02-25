@@ -1,5 +1,6 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createReducer, nanoid } from '@reduxjs/toolkit';
 import * as actions from '~actions';
+import { Sprite } from '~models/models';
 
 interface IState {
   selectedSpriteAssetName?: string;
@@ -8,6 +9,7 @@ interface IState {
     y: number;
     zoom: number;
   };
+  sprites: Sprite[];
 }
 
 const initialState: IState = {
@@ -16,6 +18,23 @@ const initialState: IState = {
     y: 0,
     zoom: 1,
   },
+  sprites: [
+    {
+      assetName: 'path_horizontal_sides',
+      objectId: nanoid(),
+      width: 32,
+      height: 32,
+      repeat: {
+        timesY: 1,
+        timesX: 20,
+      },
+      position: {
+        x: 0,
+        y: 0,
+        z: 30,
+      },
+    },
+  ],
 };
 
 export const spriteToolReducer = createReducer(initialState, (builder) => {
@@ -29,5 +48,43 @@ export const spriteToolReducer = createReducer(initialState, (builder) => {
       cursorState: {
         ...payload,
       },
-    }));
+    }))
+    .addCase(actions.duplicateSprite, (state, { payload }) => {
+      state.sprites.push({
+        ...payload,
+        position: {
+          x: payload.position.x + 10,
+          y: payload.position.y + 10,
+          z: payload.position.z + 1,
+        },
+      });
+    })
+    .addCase(actions.removeSprite, (state, { payload }) => {
+      const indexToRemove = state.sprites.findIndex(
+        (s) => s.objectId === payload.objectId,
+      )!;
+
+      state.sprites.splice(indexToRemove, 1);
+    })
+    .addCase(actions.bringSpriteToFront, (state, { payload }) => {
+      const spriteToBringToFround = state.sprites.find(
+        (s) => s.objectId === payload.objectId,
+      )!;
+
+      spriteToBringToFround.position.z =
+        Math.max(...state.sprites.map((s) => s.position.z)) + 1;
+
+      state.sprites.sort((a, b) => a.position.z - b.position.z);
+    })
+    .addCase(actions.addSprite, (state, { payload }) => {
+      state.sprites.push(payload);
+    })
+    .addCase(actions.moveSprite, (state, { payload }) => {
+      const spriteToMove = state.sprites.find(
+        (s) => s.objectId === payload.objectId,
+      )!;
+
+      spriteToMove.position.x = payload.x;
+      spriteToMove.position.y = payload.y;
+    });
 });
