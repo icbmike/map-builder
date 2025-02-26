@@ -10,6 +10,7 @@ export interface Sprite {
   assetName: string;
   width: number;
   height: number;
+  scale: number;
   repeat: {
     timesX: number;
     timesY: number;

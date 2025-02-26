@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import * as actions from '~actions';
 import { Sprite } from '~models/models';
-import { DeepPartial } from '~util/DeepPartial';
 
 export const SelectTool = () => {
   const dispatch = useDispatch();
@@ -22,6 +21,7 @@ export const SelectTool = () => {
     position: { x, y, z },
     height,
     width,
+    scale,
     objectId,
     repeat: { timesX, timesY },
   } = selectedSprite;
@@ -81,6 +81,24 @@ export const SelectTool = () => {
                 onIntPropertyChange(e, (s, v) => ({
                   ...s,
                   height: v,
+                }))
+              }
+            />
+          </label>
+        </span>
+        <span>
+          <label>
+            Scale:{' '}
+            <input
+              type="number"
+              min={0.01}
+              step={0.01}
+              value={scale}
+              className="selectTool-propertyInput"
+              onChange={(e) =>
+                onFloatPropertyChange(e, (s, v) => ({
+                  ...s,
+                  scale: v,
                 }))
               }
             />

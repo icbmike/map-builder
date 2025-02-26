@@ -48,14 +48,15 @@ export const setupSpriteToolInputs = (
 
     if (selectedSprite) {
       const img = assets[selectedSprite]!;
-      const width = Math.abs(img.width * zoom);
-      const height = Math.abs(img.height * zoom);
+      const width = img.width;
+      const height = img.height;
+      const scale = Math.abs(zoom);
 
       const newSprite: Sprite = {
         assetName: selectedSprite,
         position: {
-          x: x - width / 2,
-          y: y - height / 2,
+          x: x - (width * scale) / 2,
+          y: y - (height * scale) / 2,
           z:
             sprites.length === 0
               ? 1
@@ -63,6 +64,7 @@ export const setupSpriteToolInputs = (
         },
         width,
         height,
+        scale,
         repeat: {
           timesX: 1,
           timesY: 1,

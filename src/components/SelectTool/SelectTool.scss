@@ -18,10 +18,14 @@
   }
 
   &-propertySection {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
     &-title {
       margin-bottom: 8px;
       font-weight: bold;
     }
-    margin-bottom: 12px;
   }
 }

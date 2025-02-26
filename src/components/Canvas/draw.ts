@@ -85,33 +85,17 @@ export const drawSprite = (ctx: Ctx, sprite: Sprite, assets: AssetList) => {
     assetName,
     width,
     height,
+    scale,
     position: { x, y },
-    repeat,
-    sourceRect,
+    repeat: { timesX, timesY },
   } = sprite;
 
   const img = assets[assetName];
   if (img) {
-    if (repeat) {
-      const pattern = ctx.createPattern(img, 'repeat')!;
-      pattern.setTransform(new DOMMatrix().translate(x, y));
-      ctx.fillStyle = pattern;
-      ctx.fillRect(x, y, repeat.timesX * width, repeat.timesY * height);
-    } else if (sourceRect) {
-      ctx.drawImage(
-        img,
-        sourceRect.x,
-        sourceRect.y,
-        sourceRect.width,
-        sourceRect.height,
-        x,
-        y,
-        width,
-        height,
-      );
-    } else {
-      ctx.drawImage(img, x, y, width, height);
-    }
+    const pattern = ctx.createPattern(img, 'repeat')!;
+    pattern.setTransform(new DOMMatrix().translate(x, y).scale(scale));
+    ctx.fillStyle = pattern;
+    ctx.fillRect(x, y, timesX * width * scale, timesY * height * scale);
   }
 };
 
@@ -144,13 +128,14 @@ const drawSelectTool = (ctx: Ctx, state: TState) => {
       position: { x, y },
       width,
       height,
+      scale,
       repeat: { timesX, timesY },
     } = selectedSprite;
 
     ctx.strokeStyle = 'white';
     ctx.setLineDash([4, 2]);
     ctx.lineDashOffset = selectBorderOffset;
-    ctx.strokeRect(x, y, width * timesX, height * timesY);
+    ctx.strokeRect(x, y, width * timesX * scale, height * timesY * scale);
 
     selectBorderOffset = (selectBorderOffset + 1) % 5;
   }

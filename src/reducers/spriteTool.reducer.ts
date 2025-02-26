@@ -25,6 +25,7 @@ const initialState: IState = {
       objectId: nanoid(),
       width: 32,
       height: 32,
+      scale: 1,
       repeat: {
         timesY: 1,
         timesX: 20,
