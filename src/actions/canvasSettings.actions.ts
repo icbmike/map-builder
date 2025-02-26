@@ -1,3 +1,7 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createAction } from '@reduxjs/toolkit';
 
-export const setCanvasSettings = createAction<{aspectRatio: number, backgroundAsset?: string}>('CANVAS_SETTINGS/SET');
+export const setCanvasSettings = createAction<{
+  aspectRatio: number;
+  backgroundAsset?: string;
+  backgroundScale: number;
+}>('CANVAS_SETTINGS/SET');

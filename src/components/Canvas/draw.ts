@@ -117,6 +117,7 @@ export const drawSprite = (ctx: Ctx, sprite: Sprite, assets: AssetList) => {
 
 const drawBackground = (ctx: Ctx, assets: AssetList, state: TState) => {
   const backgroundAssetName = selectors.getBackgroundAsset(state);
+  const backgroundScale = selectors.getBackgroundScale(state);
 
   if (!backgroundAssetName) return;
 
@@ -125,6 +126,8 @@ const drawBackground = (ctx: Ctx, assets: AssetList, state: TState) => {
   if (!backgroundAsset) return;
 
   const pattern = ctx.createPattern(backgroundAsset, 'repeat')!;
+  const transform = new DOMMatrix().scale(backgroundScale);
+  pattern.setTransform(transform);
 
   ctx.fillStyle = pattern;
 

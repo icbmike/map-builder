@@ -1,7 +1,17 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { TState } from "~redux/store";
+import { createSelector } from '@reduxjs/toolkit';
+import { TState } from '~redux/store';
 
-const getCanvasSettingsState = (state:TState) => state.canvasSettings;
+const getCanvasSettingsState = (state: TState) => state.canvasSettings;
 
-export const getAspectRatio = createSelector(getCanvasSettingsState, s => s.aspectRatio);
-export const getBackgroundAsset = createSelector(getCanvasSettingsState, s => s.backgroundAsset);
+export const getAspectRatio = createSelector(
+  getCanvasSettingsState,
+  (s) => s.aspectRatio,
+);
+export const getBackgroundAsset = createSelector(
+  getCanvasSettingsState,
+  (s) => s.backgroundAsset,
+);
+export const getBackgroundScale = createSelector(
+  getCanvasSettingsState,
+  (s) => s.backgroundScale,
+);

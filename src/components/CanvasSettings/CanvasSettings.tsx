@@ -11,6 +11,8 @@ export const CanvasSettings = () => {
   const dispatch = useDispatch();
   const aspectRatio = useSelector(selectors.getAspectRatio);
   const backgroundAsset = useSelector(selectors.getBackgroundAsset);
+  const backgroundScale = useSelector(selectors.getBackgroundScale);
+
   const [
     isSelectBackgroundAssetModalOpen,
     setIsSelectBackgroundAssetModalOpen,
@@ -23,6 +25,7 @@ export const CanvasSettings = () => {
       actions.setCanvasSettings({
         aspectRatio,
         backgroundAsset: assetName,
+        backgroundScale,
       }),
     );
   };
@@ -37,12 +40,13 @@ export const CanvasSettings = () => {
             value={aspectRatio}
             min={1}
             step={0.01}
-            max={3}
+            max={10}
             onChange={(e) =>
               dispatch(
                 actions.setCanvasSettings({
                   aspectRatio: parseFloat(e.target.value),
                   backgroundAsset,
+                  backgroundScale,
                 }),
               )
             }
@@ -62,6 +66,25 @@ export const CanvasSettings = () => {
               src={assets[backgroundAsset]!.src}
             />
           ) : null}
+          <label>
+            Background Asset Size:{' '}
+            <input
+              type="number"
+              min={0.1}
+              max={3}
+              step={0.1}
+              value={backgroundScale}
+              onChange={(e) =>
+                dispatch(
+                  actions.setCanvasSettings({
+                    aspectRatio,
+                    backgroundAsset,
+                    backgroundScale: parseFloat(e.target.value),
+                  }),
+                )
+              }
+            />
+          </label>
         </div>
       </div>
       <SelectBackgroundAssetModal
