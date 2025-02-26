@@ -66,6 +66,7 @@ export const spriteToolReducer = createReducer(initialState, (builder) => {
       )!;
 
       state.sprites.splice(indexToRemove, 1);
+      state.selectedSprite = undefined;
     })
     .addCase(actions.bringSpriteToFront, (state, { payload }) => {
       const spriteToBringToFround = state.sprites.find(

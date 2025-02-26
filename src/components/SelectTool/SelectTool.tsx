@@ -1,10 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as selectors from '~selectors';
 
 import './SelectTool.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import * as actions from '~actions';
 
 export const SelectTool = () => {
+  const dispatch = useDispatch();
   const selectedSprite = useSelector(selectors.getSelectedSprite);
 
   if (!selectedSprite) {
@@ -81,6 +85,10 @@ export const SelectTool = () => {
           </label>
         </span>
       </div>
+
+      <button onClick={() => dispatch(actions.removeSprite(selectedSprite))}>
+        <FontAwesomeIcon icon={faTrash} />
+      </button>
     </div>
   );
 };

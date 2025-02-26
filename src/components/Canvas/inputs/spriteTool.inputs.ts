@@ -11,8 +11,6 @@ export const setupSpriteToolInputs = (
   store: Store<TState>,
   dispatch: Dispatch,
 ): Disposer => {
-  const sprites = selectors.getSprites(store.getState());
-
   const handleMouseMove = (mouseEvent: MouseEvent) => {
     const { zoom } = selectors.getCursorState(store.getState());
 
@@ -43,6 +41,9 @@ export const setupSpriteToolInputs = (
     const selectedSprite = selectors.getSelectedSpriteAssetName(
       store.getState(),
     );
+
+    const sprites = selectors.getSprites(store.getState());
+
     const { x, y, zoom } = selectors.getCursorState(store.getState());
 
     if (selectedSprite) {
@@ -55,7 +56,10 @@ export const setupSpriteToolInputs = (
         position: {
           x: x - width / 2,
           y: y - height / 2,
-          z: Math.max(...sprites.map((s) => s.position.z)) + 1,
+          z:
+            sprites.length === 0
+              ? 1
+              : Math.max(...sprites.map((s) => s.position.z)) + 1,
         },
         width,
         height,
