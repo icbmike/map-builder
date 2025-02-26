@@ -63,6 +63,10 @@ export const setupSpriteToolInputs = (
         },
         width,
         height,
+        repeat: {
+          timesX: 1,
+          timesY: 1,
+        },
       };
 
       dispatch(actions.addSprite(newSprite));

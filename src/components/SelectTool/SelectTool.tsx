@@ -6,6 +6,8 @@ import './SelectTool.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import * as actions from '~actions';
+import { Sprite } from '~models/models';
+import { DeepPartial } from '~util/DeepPartial';
 
 export const SelectTool = () => {
   const dispatch = useDispatch();
@@ -21,8 +23,26 @@ export const SelectTool = () => {
     height,
     width,
     objectId,
-    repeat,
+    repeat: { timesX, timesY },
   } = selectedSprite;
+
+  type Updater = (s: Sprite, newValue: number) => Sprite;
+
+  const onPropertyChange = (newValue: number, updater: Updater) => {
+    const newSprite = updater(selectedSprite, newValue);
+
+    dispatch(actions.updateSprite(newSprite));
+  };
+
+  const onIntPropertyChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    updater: Updater,
+  ) => onPropertyChange(parseInt(event.target.value), updater);
+
+  const onFloatPropertyChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    updater: Updater,
+  ) => onPropertyChange(parseFloat(event.target.value), updater);
 
   return (
     <div className="selectTool">
@@ -42,6 +62,12 @@ export const SelectTool = () => {
             <input
               type="number"
               value={width}
+              onChange={(e) =>
+                onIntPropertyChange(e, (s, v) => ({
+                  ...s,
+                  width: v,
+                }))
+              }
               className="selectTool-propertyInput"
             />
           </label>
@@ -51,6 +77,12 @@ export const SelectTool = () => {
               type="number"
               value={height}
               className="selectTool-propertyInput"
+              onChange={(e) =>
+                onIntPropertyChange(e, (s, v) => ({
+                  ...s,
+                  height: v,
+                }))
+              }
             />
           </label>
         </span>
@@ -65,6 +97,12 @@ export const SelectTool = () => {
               type="number"
               value={x}
               className="selectTool-propertyInput"
+              onChange={(e) =>
+                onIntPropertyChange(e, (s, v) => ({
+                  ...s,
+                  position: { ...s.position, x: v },
+                }))
+              }
             />
           </label>
           <label>
@@ -73,6 +111,12 @@ export const SelectTool = () => {
               type="number"
               value={y}
               className="selectTool-propertyInput"
+              onChange={(e) =>
+                onIntPropertyChange(e, (s, v) => ({
+                  ...s,
+                  position: { ...s.position, y: v },
+                }))
+              }
             />
           </label>
           <label>
@@ -81,6 +125,54 @@ export const SelectTool = () => {
               type="number"
               value={z}
               className="selectTool-propertyInput"
+              onChange={(e) =>
+                onIntPropertyChange(e, (s, v) => ({
+                  ...s,
+                  position: { ...s.position, z: v },
+                }))
+              }
+            />
+          </label>
+        </span>
+      </div>
+
+      <div className="selectTool-propertySection">
+        <div className="selectTool-propertySection-title">Repeat</div>
+        <span>
+          <label>
+            X:{' '}
+            <input
+              type="number"
+              value={timesX}
+              min={1}
+              className="selectTool-propertyInput"
+              onChange={(e) =>
+                onIntPropertyChange(e, (s, v) => ({
+                  ...s,
+                  repeat: {
+                    ...s.repeat,
+                    timesX: v,
+                  },
+                }))
+              }
+            />
+          </label>
+          <label>
+            Y:{' '}
+            <input
+              type="number"
+              value={timesY}
+              min={1}
+              className="selectTool-propertyInput"
+              onChange={(e) =>
+                onIntPropertyChange(e, (s, v) => ({
+                  ...s,
+                  repeat: {
+                    ...s.repeat,
+                    timesY: v,
+                  },
+                }))
+              }
             />
           </label>
         </span>

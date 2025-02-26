@@ -92,5 +92,12 @@ export const spriteToolReducer = createReducer(initialState, (builder) => {
     .addCase(actions.selectSprite, (state, { payload }) => ({
       ...state,
       selectedSprite: payload.objectId,
-    }));
+    }))
+    .addCase(actions.updateSprite, (state, { payload }) => {
+      const indexToUpdate = state.sprites.findIndex(
+        (s) => s.objectId === payload.objectId,
+      );
+
+      state.sprites.splice(indexToUpdate, 1, payload);
+    });
 });

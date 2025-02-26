@@ -37,3 +37,5 @@ export const moveSprite = createAction<{
   y: number;
   objectId: string;
 }>('SPRITE/MOVE');
+
+export const updateSprite = createAction<Sprite>('SPRITE/UPDATE');
