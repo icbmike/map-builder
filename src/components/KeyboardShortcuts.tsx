@@ -1,13 +1,16 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '~actions';
 import { SelectedTool } from '~models/models';
+import * as selectors from '~selectors';
 
 export const KeyboardShortcuts = () => {
   const dispatch = useDispatch();
+  const selectedTool = useSelector(selectors.getSelectedTool);
+  const selectedSprite = useSelector(selectors.getSelectedSprite);
 
   useEffect(() => {
-    window.addEventListener('keyup', (event: KeyboardEvent) => {
+    const eventListener = (event: KeyboardEvent) => {
       if (event.altKey && event.code === 'KeyP') {
         dispatch(actions.setSelectedTool(SelectedTool.Select));
       }
@@ -19,8 +22,20 @@ export const KeyboardShortcuts = () => {
       if (event.altKey && event.code === 'KeyL') {
         dispatch(actions.setSelectedTool(SelectedTool.Light));
       }
-    });
-  }, []);
+
+      if (event.code === 'Delete') {
+        if (selectedTool == SelectedTool.Select && selectedSprite) {
+          dispatch(actions.removeSprite(selectedSprite));
+        }
+      }
+    };
+
+    window.addEventListener('keyup', eventListener);
+
+    return () => {
+      window.removeEventListener('keyup', eventListener);
+    };
+  }, [selectedTool, selectedSprite]);
 
   return null;
 };
