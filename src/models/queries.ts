@@ -11,9 +11,15 @@ export const findShapeByPosition = (
       position: { x, y },
       width,
       height,
+      repeat: { timesX, timesY },
     } = s;
 
-    if (cX > x && cX < x + width && cY > y && cY < y + height) {
+    if (
+      cX > x &&
+      cX < x + width * timesX &&
+      cY > y &&
+      cY < y + height * timesY
+    ) {
       return s;
     }
   }

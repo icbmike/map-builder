@@ -144,12 +144,13 @@ const drawSelectTool = (ctx: Ctx, state: TState) => {
       position: { x, y },
       width,
       height,
+      repeat: { timesX, timesY },
     } = selectedSprite;
 
     ctx.strokeStyle = 'white';
     ctx.setLineDash([4, 2]);
     ctx.lineDashOffset = selectBorderOffset;
-    ctx.strokeRect(x, y, width, height);
+    ctx.strokeRect(x, y, width * timesX, height * timesY);
 
     selectBorderOffset = (selectBorderOffset + 1) % 5;
   }
